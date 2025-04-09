@@ -1,0 +1,6 @@
+- name: Update the 'voltron-net'
+  hosts: localhost
+  tasks:
+    - name: Verify the updated variable
+      ansible.builtin.debug:
+        var: domains
