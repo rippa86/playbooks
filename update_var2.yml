@@ -5,7 +5,8 @@
       ansible.builtin.set_stats:
         data:
           domains: "{{ domains | combine({'gundam-nz': 'strike freedom'}) }}"
-
+          gundam-nz': 'strike freedom'
+          
     - name: Verify the updated variable
       ansible.builtin.debug:
         var: domains
