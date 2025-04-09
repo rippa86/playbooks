@@ -1,4 +1,6 @@
 collections:
   # Install a collection from Ansible Galaxy.
   - name: demo.playpen
-    source: https://github.com/rippa86/demo.git
+    source: https://github.com/rippa86/demo # Point to the root of the repository
+    type: git
+    version: main # Or a specific branch, tag, or commit
