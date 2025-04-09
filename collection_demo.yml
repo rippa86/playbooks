@@ -10,6 +10,6 @@
       when: ansible_facts.ansible_system == "Linux"
 
 - name: importing a playbook with variables
-  ansible.builtin.import_playbook: demo.playpen.playbooks.example.yml
+  ansible.builtin.import_playbook: demo.playpen.playbooks.examples
   vars:
     name: "playpen"
