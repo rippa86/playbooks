@@ -5,10 +5,6 @@
       ansible.builtin.include_role:
         name: demo.playpen.dns
 
-    - name: include more tasks
-      include_tasks: demo.playpen.playbooks.tasks.yml
-
-
 - name: importing a playbook with variables
   ansible.builtin.import_playbook: demo.playpen.examples
   vars:
