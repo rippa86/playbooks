@@ -4,6 +4,12 @@
     - name: Verify the updated variable
       ansible.builtin.debug:
         var: domains
+    - name: Verify the updated variable
+      ansible.builtin.debug:
         var: optimus_au
+    - name: Verify the updated variable
+      ansible.builtin.debug:
         var: voltron_net
+    - name: Verify the updated variable
+      ansible.builtin.debug:
         var: gundam_nz
