@@ -1,6 +1,9 @@
 - hosts: localhost
   
   tasks: 
-  - include_role:
+  - name: running a role within a collection
+    include_role:
       name: demo.playpen.dns
       #push f
+  - name: importing a playbook
+    import_playbook: demo.playpen.playbooks.example
