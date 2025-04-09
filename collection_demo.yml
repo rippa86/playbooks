@@ -5,7 +5,11 @@
       ansible.builtin.include_role:
         name: demo.playpen.dns
 
-  - name: importing a playbook with variables
-    ansible.builtin.import_playbook: demo.playpen.playbooks.example
-    vars:
-      name: "playpen"
+    - name: include more tasks
+      include_tasks: demo.playpen.playbooks.tasks.yml
+      when: ansible_facts.ansible_system == "Linux"
+
+- name: importing a playbook with variables
+  ansible.builtin.import_playbook: demo.playpen.playbooks.example
+  vars:
+    name: "playpen"
