@@ -7,7 +7,7 @@
 
     - name: include more tasks
       include_tasks: demo.playpen.playbooks.tasks.yml
-      when: ansible_facts.ansible_system == "Linux"
+
 
 - name: importing a playbook with variables
   ansible.builtin.import_playbook: demo.playpen.examples
