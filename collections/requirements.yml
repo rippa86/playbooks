@@ -1,0 +1,4 @@
+collections:
+  # Install a collection from Ansible Galaxy.
+  - name: demo.playpen
+    source: https://github.com/rippa86/demo.git
