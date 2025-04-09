@@ -6,4 +6,4 @@
       name: demo.playpen.dns
 
   - name: importing a playbook
-    ansible.builtin.import_playbook: demo.playpen.playbooks.example
+    ansible.builtin.include_playbook: demo.playpen.playbooks.example
