@@ -8,7 +8,8 @@
   tasks:
     - name: Update voltron-net to true
       ansible.builtin.set_stats:
-        domains: "{{ domains | combine({'optimus-au': 'autobots'}) }}"
+        data:
+          domains: "{{ domains | combine({'optimus-au': 'autobots'}) }}"
 
     - name: Verify the updated variable
       ansible.builtin.debug:
