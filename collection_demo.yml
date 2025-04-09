@@ -5,7 +5,7 @@
       ansible.builtin.include_role:
         name: demo.playpen.dns
 
-    - name: importing a playbook with variables
-      ansible.builtin.include_playbook: demo.playpen.playbooks.example
-      vars:
-        name: "playpen"
+  - name: importing a playbook with variables
+    ansible.builtin.import_playbook: demo.playpen.playbooks.example
+    vars:
+      name: "playpen"
