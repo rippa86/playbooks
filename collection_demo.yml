@@ -4,8 +4,8 @@
   - name: running a role within a collection
     ansible.builtin.include_role:
       name: demo.playpen.dns
-  - name: importing a playbook
-    ansible.builtin.include_playbook: 
-      name: demo.playpen.playbooks.example
-      vars: 
-        name: "playpen"
+  # - name: importing a playbook
+  #   ansible.builtin.include_playbook: 
+  #     name: demo.playpen.playbooks.example
+  #     vars: 
+  #       name: "playpen"
