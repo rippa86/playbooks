@@ -1,6 +1,7 @@
 collections:
-  # Install a collection from Ansible Galaxy.
-  - name: demo.playpen
-    source: https://github.com/rippa86/demo 
-    type: git
-    version: main 
+  # # Install a collection from Ansible Galaxy.
+  # - name: demo.playpen
+  #   source: https://github.com/rippa86/demo 
+  #   type: git
+  #   version: main
+- name: Azure.Azcollection
