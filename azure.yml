@@ -1,0 +1,10 @@
+- hosts: localhost
+
+
+  vars:
+    subscription_id: 695f969d-2418-491f-a6b3-bd0bf0c7cffb
+    resource_group: openenv-njmbx
+
+  tasks:
+    azure.azcollection.azure_rm_subscription_info:
+      subscription_id: "{{ subscription_id }}"
