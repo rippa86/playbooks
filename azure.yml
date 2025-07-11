@@ -6,5 +6,6 @@
     resource_group: openenv-njmbx
 
   tasks:
-    azure.azcollection.azure_rm_subscription_info:
-      subscription_id: "{{ subscription_id }}"
+    - name: get some info
+      azure.azcollection.azure_rm_subscription_info:
+        subscription_id: "{{ subscription_id }}"

@@ -4,4 +4,4 @@ collections:
   #   source: https://github.com/rippa86/demo 
   #   type: git
   #   version: main
-- name: Azure.Azcollection
+  - azure.azcollection
