@@ -17,3 +17,13 @@
 
     - ansible.builtin.debug:
         msg: "Subscription IDs: {{ subscription_ids }}"
+
+    - name: get some info
+      azure.azcollection.azure_rm_subscription_info:
+        subscription_id: "{{ subscription_ids }}"
+      register: azure_subscription_info
+
+    - name: Query all the resources in the resource group
+      azure_rm_resource_info:
+        subscription_id: "{{ item }}"
+      loop: "{{ subscription_ids }}"
