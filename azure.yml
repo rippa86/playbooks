@@ -24,6 +24,6 @@
       register: azure_subscription_info
 
     - name: Query all the resources in the resource group
-      azure_rm_resource_info:
+      azure.azcollection.azure_rm_resourcegroup_info:
         subscription_id: "{{ item }}"
       loop: "{{ subscription_ids }}"
