@@ -16,4 +16,4 @@
         subscription_ids: "{{ azure_subscription_info.subscriptions | map(attribute='subscription_id') | list }}"
 
     - ansible.builtin.debug:
-        msg: "Subscription IDs: {{ subscription_ids }}
+        msg: "Subscription IDs: {{ subscription_ids }}"
