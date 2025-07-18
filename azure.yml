@@ -8,4 +8,4 @@
   tasks:
     - name: get some info
       azure.azcollection.azure_rm_subscription_info:
-        subscription_id: "{{ subscription_id }}"
+        all: true
