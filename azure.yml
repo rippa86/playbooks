@@ -9,3 +9,8 @@
     - name: get some info
       azure.azcollection.azure_rm_subscription_info:
         all: true
+      register: azure_subscription_info
+
+    - name: Create an array of subscription IDs
+      ansible.builtin.set_fact:
+        subscription_ids: "{{ azure_subscription_info | map(attribute='subscription_id') | list }}"
