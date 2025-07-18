@@ -13,4 +13,7 @@
 
     - name: Create an array of subscription IDs
       ansible.builtin.set_fact:
-        subscription_ids: "{{ azure_subscription_info | map(attribute='subscription_id') | list }}"
+        subscription_ids: "{{ azure_subscription_info.subscriptions | map(attribute='subscription_id') | list }}"
+
+    - ansible.builtin.debug:
+        msg: "Subscription IDs: {{ subscription_ids }}
