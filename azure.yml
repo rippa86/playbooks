@@ -43,5 +43,5 @@
     - name: Get facts for one resource group
       azure.azcollection.azure_rm_resource_info:
         resource_group: "{{ item }}"
-        resource_type: virtualmachines
+        resource_type: virtualmachine
       loop: "{{ resource_groups }}"
