@@ -42,7 +42,7 @@
 
     - name: create resource dictionary
       ansible.builtin.set_fact:
-        resource_dict: "{{ resource_dict | default({}) | combine({item: azure_resource_groups_info.resourcegroups[item]}) }}"
+        resource_dict: "{{ resource_dict | default({}) | combine({item: azure_resource_groups_info.results[0].resourcegroups[item]}) }}"
       loop: "{{ resource_groups }}"
 
     - name: Combine subscription IDs and resource groups into dictionary
