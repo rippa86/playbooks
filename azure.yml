@@ -29,6 +29,9 @@
       register: azure_resource_groups_info
       loop: "{{ subscription_ids }}"
 
+    - ansible.builtin.debug:
+        var: azure_resource_groups_info
+
     - name: Get all resource groups in the subscription
       ansible.builtin.set_fact:
         resource_groups: "{{ azure_resource_groups_info.resourcegroups | map(attribute='name') | list }}"
