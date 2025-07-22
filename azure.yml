@@ -30,7 +30,7 @@
       loop: "{{ subscription_ids }}"
 
     - ansible.builtin.debug:
-        var: azure_resource_groups_info.results.[0]
+        msg: "{{ azure_resource_groups_info.results.[0] }}"
 
     - name: Get all resource groups in the subscription
       ansible.builtin.set_fact:
