@@ -45,6 +45,7 @@
         resource_group: "{{ item }}"
         provider: compute
         resource_type: virtualMachines
+        api_version: 2024-11-01
       loop: "{{ resource_groups }}"
       register: all_vms_in_resouces
 
