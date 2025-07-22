@@ -1,0 +1,3 @@
+- name: find all the resource_groups in my subscription
+  ansible.builtin.set_fact:
+    : "{{ azure_subscription_info.subscriptions | map(attribute='subscription_id') | list }}"
