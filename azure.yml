@@ -46,3 +46,7 @@
         provider: compute
         resource_type: virtualMachines
       loop: "{{ resource_groups }}"
+      register: all_vms_in_resouces
+
+    - ansible.builtin.debug:
+        var: all_vms_in_resouces
