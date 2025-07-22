@@ -40,24 +40,7 @@
       ansible.builtin.set_fact:
         resource_groups: "{{ azure_resource_groups_info.results[0].resourcegroups | map(attribute='name') | list }}"
 
-    - name: create resource dictionary
-      ansible.builtin.set_fact:
-        resource_dict: "{{ resource_dict | default({}) | combine({item: azure_resource_groups_info.results[0].resourcegroups[item]}) }}"
+    - name: Get facts for one resource group
+      azure.azcollection.azure_rm_resourcegroup_info:
+        name: "{{ item }}"
       loop: "{{ resource_groups }}"
-
-    - name: Combine subscription IDs and resource groups into dictionary
-      ansible.builtin.set_fact:
-        subscription_resource_groups: >-
-          {{
-            subscription_resource_groups | default({}) |
-            combine({
-              item.item: item.resourcegroups | map(attribute='name') | list
-            })
-          }}
-      loop: "{{ azure_resource_groups_info.results }}"
-      vars:
-        subscription_resource_groups: {}
-
-    - name: Display the combined dictionary
-      ansible.builtin.debug:
-        msg: "Subscription Resource Groups: {{ subscription_resource_groups }}"
