@@ -33,12 +33,12 @@
         var: azure_resource_groups_info
     
     - ansible.builtin.debug:
-        msg: "{{ azure_resource_groups_info.results.[0].resourcegroups}}"
+        msg: "{{ azure_resource_groups_info.results[0].resourcegroups}}"
 
 
     - name: Get all resource groups in the subscription
       ansible.builtin.set_fact:
-        resource_groups: "{{ azure_resource_groups_info.results.[0].resourcegroups | map(attribute='name') | list }}"
+        resource_groups: "{{ azure_resource_groups_info.results[0].resourcegroups | map(attribute='name') | list }}"
 
     - name: create resource dictionary
       ansible.builtin.set_fact:
