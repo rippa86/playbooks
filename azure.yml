@@ -61,4 +61,4 @@
 
     - name: what is the subscription debug var at the end
       ansible.builtin.debug:
-        msg: "{{ subscription_info | to_nice_json }}"
+        msg: "{{ subscription_info }}"
