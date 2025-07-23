@@ -32,7 +32,7 @@
       ansible.builtin.debug:
         var: subscription_info
 
-
-    - name: what is the subscription debug var at the end
-      ansible.builtin.debug:
-        msg: "{{ subscription_info }}"
+    - name: test the VM information
+      azure.azcollection.azure_rm_virtualmachine_info:
+        resource_group: "{{ subscription_info[0].resource_group }}"
+        name: "{{ subscription_info[0].VM[0].name }}"
