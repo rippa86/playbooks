@@ -2,57 +2,31 @@
 
 
   vars:
-    subscription_info: []
+    subscription_info: []  # Initialize an empty list to store subscription info
 
   tasks:
-    - name: get some info
+    - name: return subscription IDs
       azure.azcollection.azure_rm_subscription_info:
         all: true
       register: azure_subscription_info
+
+  # returning the list of subscriptions I can view from Azure, from there I create a Array of the subscription IDs as shown below.
 
     - name: Create an array of subscription IDs
       ansible.builtin.set_fact:
         subscription_ids: "{{ azure_subscription_info.subscriptions | map(attribute='subscription_id') | list }}"
 
-    - ansible.builtin.debug:
+    - name: debug the Subscription IDs variable
+      ansible.builtin.debug:
         msg: "Subscription IDs: {{ subscription_ids }}"
 
-    # - name: get some info
-    #   azure.azcollection.azure_rm_subscription_info:
-    #     subscription_id: "{{ subscription_ids }}"
-    #   register: azure_subscription_info
-
+# I need to loop over the Subscription IDs to find the Resource groups, due to the 1 to many relationship.
+# Unfortunatly, Looping over blocks isn't supported in Ansible (which I agree is annoying), but to get around this, we can loop over the include tasks and set subscription id as "item"
     - name: find all resources in the subscription
       include_tasks: resource_groups.yml
       vars:
         subscription_id: "{{ item }}"
       loop: "{{ subscription_ids }}"
-
-    # - name: Query all the resources in the resource group
-    #   azure.azcollection.azure_rm_resourcegroup_info:
-    #     subscription_id: "{{ item }}"
-    #   register: azure_resource_groups_info
-    #   loop: "{{ subscription_ids }}"
-
-    # - ansible.builtin.debug:
-    #     var: azure_resource_groups_info
-    
-    # - ansible.builtin.debug:
-    #     msg: "{{ azure_resource_groups_info.results[0].resourcegroups}}"
-
-
-    # - name: Get all resource groups in the subscription
-    #   ansible.builtin.set_fact:
-    #     resource_groups: "{{ azure_resource_groups_info.results[0].resourcegroups | map(attribute='name') | list }}"
-
-    # - name: Get facts for one resource group
-    #   azure.azcollection.azure_rm_resource_info:
-    #     resource_group: "{{ item }}"
-    #     provider: compute
-    #     resource_type: virtualMachines
-    #     api_version: 2024-11-01
-    #   loop: "{{ resource_groups }}"
-    #   register: all_vms_in_resouces
 
     - name: what is the subscription debug var at the end
       ansible.builtin.debug:

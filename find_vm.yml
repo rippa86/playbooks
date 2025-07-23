@@ -1,10 +1,12 @@
+# Now we get into the cool stuff, from here I can review the list of VMs in each resource group.
 - name: Get facts for one resource group
   azure.azcollection.azure_rm_resource_info:
-    resource_group: "{{ resource_group }}"
+    resource_group: "{{ resource_group }}" # I think you can just use * to find all VMs, so that could be the simpilar way to do this.
     provider: compute
     resource_type: virtualMachines
     api_version: 2024-11-01
   register: vms_in_resouce
+
 
 - name: set_fact for VMs
   ansible.builtin.set_fact:
@@ -14,6 +16,8 @@
       VM: "{{ vms_in_resouce.response }}"
   when: vms_in_resouce.response[0].name is defined
 
+# Above, I'm building a dictionary (Python term for key value pairs) that contains the subscription ID, resource group, and the VM information attached.
+# This will append the information to the subscription_info list, which is initialised at the start of the playbook.
 - name: append fact
   ansible.builtin.set_fact: 
     subscription_info: "{{ subscription_info + [Azure_info] }}"
