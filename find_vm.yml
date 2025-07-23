@@ -11,7 +11,7 @@
     Azure_info:
       subscription: "{{ subscription_id }}"
       resource_group: "{{ resource_group }}"
-        VM: "{{ vms_in_resouce.response }}"
+      VM: "{{ vms_in_resouce.response }}"
 
 - name: append fact
   set_fact: 
