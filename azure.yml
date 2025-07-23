@@ -24,8 +24,8 @@
 
     - name: find all resources in the subscription
       include_tasks: resource_groups.yml
-        vars: 
-          subscription_id: "{{ item }}"
+      vars:
+        subscription_id: "{{ item }}"
       loop: "{{ subscription_ids }}"
 
     # - name: Query all the resources in the resource group
@@ -44,7 +44,7 @@
     # - name: Get all resource groups in the subscription
     #   ansible.builtin.set_fact:
     #     resource_groups: "{{ azure_resource_groups_info.results[0].resourcegroups | map(attribute='name') | list }}"
-    
+
     # - name: Get facts for one resource group
     #   azure.azcollection.azure_rm_resource_info:
     #     resource_group: "{{ item }}"
