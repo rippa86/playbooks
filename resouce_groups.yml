@@ -1,3 +1,23 @@
-- name: find all the resource_groups in my subscription
+- name: Query all the resources in the resource group
+  azure.azcollection.azure_rm_resourcegroup_info:
+    subscription_id: "{{ subscription_id }}"
+  register: azure_resource_groups_info
+      
+
+- ansible.builtin.debug:
+    var: azure_resource_groups_info
+
+- ansible.builtin.debug:
+    msg: "{{ azure_resource_groups_info }}"
+
+- name: Get all resource groups in the subscription
   ansible.builtin.set_fact:
-    : "{{ azure_subscription_info.subscriptions | map(attribute='subscription_id') | list }}"
+    resource_groups: "{{ azure_resource_groups_info.resourcegroups | map(attribute='name') | list }}"
+
+- name: get all VMs allocated in resource groups
+  ansible.builtin.include_tasks: find_vms.yml
+  vars: 
+    resource_group: "{{ resource_group }}"
+  loop: "{{ resource_groups }}"
+  loop_control:
+    loop_var: resource_group

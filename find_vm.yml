@@ -1,0 +1,18 @@
+- name: Get facts for one resource group
+  azure.azcollection.azure_rm_resource_info:
+    resource_group: "{{ resource_group }}"
+    provider: compute
+    resource_type: virtualMachines
+    api_version: 2024-11-01
+  register: vms_in_resouce
+
+- name: set_fact for VMs
+  ansible.builtin.set_fact:
+    Azure_info:
+      subscription: "{{ subscription_id }}"
+      resource_group: "{{ resource_group }}"
+        VM: "{{ vms_in_resouce.response }}"
+
+- name: append fact
+  set_fact: 
+    subscription_info: "{{ subscription_info + [Azure_info] }}

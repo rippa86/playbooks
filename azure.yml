@@ -2,8 +2,7 @@
 
 
   vars:
-    subscription_id: 695f969d-2418-491f-a6b3-bd0bf0c7cffb
-    resource_group: openenv-njmbx
+    subscription_info: []
 
   tasks:
     - name: get some info
@@ -23,31 +22,37 @@
     #     subscription_id: "{{ subscription_ids }}"
     #   register: azure_subscription_info
 
-    - name: Query all the resources in the resource group
-      azure.azcollection.azure_rm_resourcegroup_info:
-        subscription_id: "{{ item }}"
-      register: azure_resource_groups_info
+    - name: find all resources in the subscription
+      include_tasks: resource_groups.yml
+        vars: 
+          subscription_id: "{{ item }}"
       loop: "{{ subscription_ids }}"
 
-    - ansible.builtin.debug:
-        var: azure_resource_groups_info
+    # - name: Query all the resources in the resource group
+    #   azure.azcollection.azure_rm_resourcegroup_info:
+    #     subscription_id: "{{ item }}"
+    #   register: azure_resource_groups_info
+    #   loop: "{{ subscription_ids }}"
+
+    # - ansible.builtin.debug:
+    #     var: azure_resource_groups_info
     
+    # - ansible.builtin.debug:
+    #     msg: "{{ azure_resource_groups_info.results[0].resourcegroups}}"
+
+
+    # - name: Get all resource groups in the subscription
+    #   ansible.builtin.set_fact:
+    #     resource_groups: "{{ azure_resource_groups_info.results[0].resourcegroups | map(attribute='name') | list }}"
+    
+    # - name: Get facts for one resource group
+    #   azure.azcollection.azure_rm_resource_info:
+    #     resource_group: "{{ item }}"
+    #     provider: compute
+    #     resource_type: virtualMachines
+    #     api_version: 2024-11-01
+    #   loop: "{{ resource_groups }}"
+    #   register: all_vms_in_resouces
+
     - ansible.builtin.debug:
-        msg: "{{ azure_resource_groups_info.results[0].resourcegroups}}"
-
-
-    - name: Get all resource groups in the subscription
-      ansible.builtin.set_fact:
-        resource_groups: "{{ azure_resource_groups_info.results[0].resourcegroups | map(attribute='name') | list }}"
-
-    - name: Get facts for one resource group
-      azure.azcollection.azure_rm_resource_info:
-        resource_group: "{{ item }}"
-        provider: compute
-        resource_type: virtualMachines
-        api_version: 2024-11-01
-      loop: "{{ resource_groups }}"
-      register: all_vms_in_resouces
-
-    - ansible.builtin.debug:
-        var: all_vms_in_resouces
+        var: subscription_info
