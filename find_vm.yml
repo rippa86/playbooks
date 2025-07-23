@@ -12,7 +12,9 @@
       subscription: "{{ subscription_id }}"
       resource_group: "{{ resource_group }}"
       VM: "{{ vms_in_resouce.response }}"
-
+  when: vms_in_resouce.response | length > 0
+  
 - name: append fact
   ansible.builtin.set_fact: 
     subscription_info: "{{ subscription_info + [Azure_info] }}"
+  when: vms_in_resouce.response | length > 0
