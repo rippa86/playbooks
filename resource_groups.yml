@@ -15,7 +15,7 @@
     resource_groups: "{{ azure_resource_groups_info.resourcegroups | map(attribute='name') | list }}"
 
 - name: get all VMs allocated in resource groups
-  ansible.builtin.include_tasks: find_vms.yml
+  ansible.builtin.include_tasks: find_vm.yml
   vars: 
     resource_group: "{{ resource_group }}"
   loop: "{{ resource_groups }}"
