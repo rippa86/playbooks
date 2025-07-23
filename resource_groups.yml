@@ -1,6 +1,7 @@
 # In recource groups I gather the information the same way we build out the subscription_ids, by using the map function to get the resource group names.
+
 - name: Query all the resources in the resource group
-  cazure.azcollection.azure_rm_resourcegroup_info:
+  azure.azcollection.azure_rm_resourcegroup_info:
     subscription_id: "{{ subscription_id }}"
   register: azure_resource_groups_info
       
