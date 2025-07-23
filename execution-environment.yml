@@ -1,0 +1,34 @@
+---
+version: 3
+
+images:
+  base_image:
+    #name: "registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:latest"
+    name: "registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel9:latest"
+
+dependencies:
+  python_interpreter:
+    package_system: "python3.11"
+      #python_path: /usr/bin/python3.11
+  python:
+    - ansible-core
+  ansible_runner:
+      package_pip: ansible-runner
+  galaxy:
+    collections: 
+    - azure.azcollection
+    - servicenow.itsm
+    - ansible.windows
+    - community.windows
+    - community.general
+
+
+additional_build_steps:
+  prepend_base: |
+    RUN microdnf install -y python3.11 python3.11-pip python3.11-devel
+
+  prepend_final: |
+    RUN python3 -m pip install --upgrade pip
+
+options:
+  package_manager_path: /usr/bin/microdnf
