@@ -14,5 +14,5 @@
       VM: "{{ vms_in_resouce.response }}"
 
 - name: append fact
-  set_fact: 
+  ansible.builtin.set_fact: 
     subscription_info: "{{ subscription_info + [Azure_info] }}"

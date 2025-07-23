@@ -54,5 +54,6 @@
     #   loop: "{{ resource_groups }}"
     #   register: all_vms_in_resouces
 
-    - ansible.builtin.debug:
+    - name: what is the subscription debug var at the end
+      ansible.builtin.debug:
         var: subscription_info
