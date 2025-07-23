@@ -21,4 +21,4 @@
 
 - name: Reset Azure_info back to null
   ansible.builtin.set_fact:
-    Azure_info:: null
+    Azure_info: null
